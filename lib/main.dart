@@ -1,7 +1,7 @@
 /// Author:    Nabraj Khadka
 /// Created:   17.03.2022
 ///
-/// Description: Main entry file
+/// Description: Main entry (point) file - Production
 ///
 
 import 'dart:async';

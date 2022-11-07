@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:moru_weather/main.dart';
 import 'package:moru_weather/main_common.dart';
 
 void main() {

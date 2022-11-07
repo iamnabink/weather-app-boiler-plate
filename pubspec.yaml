@@ -54,7 +54,7 @@ dependencies:
   #  data_connection_checker: ^0.3.4
   internet_connection_checker: ^0.0.1+3
 
-  # Approximate how your Flutter app looks and performs on another device.
+  # Approximate how your Flutter app looks and performs on another local.
   device_preview: ^1.0.0
 
   auto_route: ^5.0.2 #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.

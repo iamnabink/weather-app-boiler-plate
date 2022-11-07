@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 //TODO:  - Add swipe on refresh
 //TODO:  - Request for user permission
-// TODO: -
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,13 +16,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text(''),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
+          children: <Widget>[
+            const Text(
               'Starts from here',
             ),
           ],

@@ -11,11 +11,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:moru_weather/routes/di.dart';
 import 'package:moru_weather/routes/router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'core/presentation/resources/constants.dart';
 import 'core/presentation/resources/theme_data.dart';
 
+/// Main Common functions before run app execution
 Future<void> mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -35,14 +37,9 @@ Future<void> mainCommon() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 }
 
-class Application extends ConsumerStatefulWidget {
+class Application extends ConsumerWidget {
   @override
-  ConsumerState createState() => ApplicationState();
-}
-
-class ApplicationState extends ConsumerState<Application> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final _router = ref.watch(routerProvider);
     return MaterialApp.router(
       builder: DevicePreview.appBuilder,

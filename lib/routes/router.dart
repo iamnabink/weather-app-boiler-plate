@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:moru_weather/routes/router.gr.dart';
+import 'package:moru_weather/routes/route_guard.dart';
 
-import '../features/help/presentation/help_page.dart';
-import '../features/home/presentation/home_page.dart';
+import '../features/help/presentation/page/help.dart';
+import '../features/home/presentation/page/home.dart';
 
 /*
 flutter packages pub run build_runner build --delete-conflicting-outputs
@@ -13,20 +12,14 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HelpPage, initial: true),
-    AutoRoute(
-      page: HomePage,
-    )
+    AutoRoute(page: HelpPage, guards: [InitialRouteGuard], initial: true),
+    AutoRoute(page: HomePage)
 
     // redirect all other paths
     // RedirectRoute(path: '*', redirectTo: 'login'),
   ],
 )
-
 class $AppRouter {}
-
-final routerProvider = Provider((ref) => AppRouter());
-
 /// router observer
 class MyRouteObserver extends AutoRouterObserver {
   @override
@@ -55,5 +48,3 @@ class MyRouteObserver extends AutoRouterObserver {
     print('Tab route re-visited: ${route.name}');
   }
 }
-
-

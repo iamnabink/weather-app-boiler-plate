@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../resources/ui_assets.dart';
 
 class NetworkErrorView extends StatelessWidget {
   final String? message;

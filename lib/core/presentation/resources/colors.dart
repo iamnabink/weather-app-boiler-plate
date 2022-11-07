@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -6,24 +5,24 @@ class AppColors {
   static Color primaryColor(double opacity) {
     try {
       // return Color(int.parse(settingRepo.setting.value.mainColor.replaceAll("#", "0xFF"))).withOpacity(opacity);
-      return const Color(0xFF00B051).withOpacity(opacity);
+      return const Color(0xFF4C6896).withOpacity(opacity);
     } catch (e) {
-      return const Color(0xFF00B051).withOpacity(opacity);
+      return const Color(0xFF4C6896).withOpacity(opacity);
     }
   }
 
   static Color secondaryColor(double opacity) {
     try {
       // return Color(int.parse(settingRepo.setting.value.mainColor.replaceAll("#", "0xFF"))).withOpacity(opacity);
-      return const Color(0xFFffd71c).withOpacity(opacity);
+      return const Color(0xFFAAAAAA).withOpacity(opacity);
     } catch (e) {
-      return const Color(0xFFffd71c).withOpacity(opacity);
+      return const Color(0xFFAAAAAA).withOpacity(opacity);
     }
   }
 
   static Color getRandomColor() {
     return ([...Colors.primaries]..shuffle()).first;
-    return Colors.primaries[Random().nextInt(Colors.primaries.length)];
+    // return Colors.primaries[Random().nextInt(Colors.primaries.length)];
   }
 
   static Color colorBlack(double opacity) {

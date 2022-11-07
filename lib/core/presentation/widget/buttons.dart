@@ -46,17 +46,17 @@ class CustomCupertinoIndicator extends StatelessWidget {
 }
 
 class PrimaryButton extends StatelessWidget {
-  double? width;
-  double? height;
-  Color? color;
-  Function onPressed;
-  double? radius;
-  Widget? icon;
-  bool isDisabled;
-  Color? textColor;
-  Widget? widget;
-  String title;
-  double? textSize;
+  final double? width;
+  final double? height;
+  final Color? color;
+  final Function onPressed;
+  final double? radius;
+  final Widget? icon;
+  final bool isDisabled;
+  final Color? textColor;
+  final Widget? widget;
+  final String title;
+  final double? textSize;
 
   PrimaryButton({
     Key? key,
@@ -114,17 +114,17 @@ class PrimaryButton extends StatelessWidget {
 }
 
 class PrimaryOutlinedButton extends StatelessWidget {
-  double? width;
-  double? height;
-  Color? borderColor;
-  Function onPressed;
-  double? radius;
-  Widget? loadingWidget;
-  String title;
-  Color? titleColor;
-  Widget? icon;
-  Color? iconColor;
-  double? iconSize;
+  final double? width;
+  final double? height;
+  final Color? borderColor;
+  final Function onPressed;
+  final double? radius;
+  final Widget? loadingWidget;
+  final String title;
+  final Color? titleColor;
+  final Widget? icon;
+  final Color? iconColor;
+  final double? iconSize;
 
   PrimaryOutlinedButton(
       {Key? key,
