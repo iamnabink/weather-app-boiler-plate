@@ -22,6 +22,6 @@ class HelpPage extends StatefulWidget {
 class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }

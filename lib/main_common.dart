@@ -70,8 +70,6 @@ class ApplicationState extends ConsumerState<Application> {
   }
 }
 
-// A Counter example implemented with riverpod with Logger
-
 class Logger extends ProviderObserver {
   @override
   void didUpdateProvider(
