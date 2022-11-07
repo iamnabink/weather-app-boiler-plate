@@ -1,0 +1,129 @@
+name: moru_weather
+description: A simple weather app built with the help of www.weatherapi.com - as an assignment given by moru team.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.5 <3.0.0"
+
+# Dependencies specify other packages that your package needs in order to work.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+  hooks_riverpod: ^2.1.1  #A simple way to access state from anywhere in your application while robust and testable.
+
+  #  Flutter plugin for querying information about the application package, such as CFBundleVersion on iOS or versionCode on Android.
+  package_info_plus:
+
+  #A powerful Http client for Dart, which supports Interceptors, FormData, Request Cancellation, File Downloading, Timeout etc.
+  dio: ^4.0.4
+
+  #  Toast Library for Flutter, Easily create toast messages in single line of code
+  fluttertoast: ^8.0.8
+
+  #  Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API to request and check permissions.
+  permission_handler: ^10.2.0
+
+  #  Contains code to deal with internationalized/localized messages,
+  #  date and number formatting and parsing, bi-directional text, and other internationalization issues.
+  intl: ^0.17.0
+
+  yaml: ^3.1.1 #A parser for YAML, a human-friendly data serialization standard
+
+  #  Flutter Secure Storage provides API to store data in secure storage. Keychain is used in iOS, KeyStore based solution is used in Android.
+  flutter_secure_storage: ^6.0.0
+
+  #  Sentry SDK for Flutter. This package aims to support different Flutter targets by relying on the many platforms supported by Sentry with native SDKs.
+  sentry_flutter: ^6.2.2
+
+  # Pretty Dio logger is a Dio interceptor that logs network calls in a pretty, easy to read format.
+  pretty_dio_logger: ^1.1.1
+
+  #  A pure Dart library that checks for internet by opening a socket to a list of specified addresses,
+  #  each with individual port and timeout. Defaults are provided for convenience
+  #  data_connection_checker: ^0.3.4
+  internet_connection_checker: ^0.0.1+3
+
+  # Approximate how your Flutter app looks and performs on another device.
+  device_preview: ^1.0.0
+
+  auto_route: ^5.0.2 #AutoRoute is a declarative routing solution, where everything needed for navigation is automatically generated for you.
+
+  # Code generation for immutable classes that has a simple syntax/API without compromising on the features.
+  freezed: ^2.2.1
+
+  # a widget provided to the flutter scroll component drop-down refresh and pull up load.
+  pull_to_refresh: ^2.0.0
+
+  # a package containing annotations for freezed.
+  freezed_annotation: any
+
+  # https://pub.dev/packages/geolocator
+  # Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.
+  geolocator: ^9.0.2
+
+  #Easily configure any flutter application with global variables using a `.env` file.
+  flutter_dotenv: ^5.0.2
+
+  #  A package which simplifies the task of updating your Flutter app's launcher icon.
+  flutter_launcher_icons: ^0.10.0
+
+
+
+#to change app launcher icon add following section
+flutter_icons:
+  image_path: "assets/images/launcher_icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+
+#run :
+#  1 : flutter pub get
+#  2 : flutter pub run flutter_launcher_icons:main
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+    # add the generator to your dev_dependencies
+  json_annotation:
+  build_runner:
+  flutter_lints: ^1.0.0
+  json_serializable: ^6.1.5
+  auto_route_generator:
+
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/.env
+    - pubspec.yaml
+
+
+  # The following section is to add custom fonts to our app
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Medium.ttf
+        #          weight: 500
+        - asset: assets/fonts/Roboto-Regular.ttf
+  #          weight: 400
+
