@@ -3,8 +3,6 @@
 ///
 /// Description: Main entry file
 ///
-/// (c) Copyright by Salesberry.com.
-///
 
 import 'dart:async';
 
