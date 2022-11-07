@@ -46,7 +46,7 @@ dependencies:
   #  Sentry SDK for Flutter. This package aims to support different Flutter targets by relying on the many platforms supported by Sentry with native SDKs.
   sentry_flutter: ^6.2.2
 
-  # Pretty Dio logger is a Dio interceptor that logs network calls in a pretty, easy to read format.
+  # Pretty Dio logger is a Dio interceptor that logs remote calls in a pretty, easy to read format.
   pretty_dio_logger: ^1.1.1
 
   #  A pure Dart library that checks for internet by opening a socket to a list of specified addresses,
@@ -77,6 +77,9 @@ dependencies:
 
   #  A package which simplifies the task of updating your Flutter app's launcher icon.
   flutter_launcher_icons: ^0.10.0
+
+  # load and cache network images. Can also be used with placeholder and error widgets.
+  cached_network_image: ^3.2.1
 
 
 

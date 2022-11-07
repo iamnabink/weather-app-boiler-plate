@@ -1,16 +1,31 @@
-# moru_weather
+# Moru Weather App
 
-A new Flutter project.
+A simple weather app built with the help of www.weatherapi.com - as an assignment given by moru team.
 
-## Getting Started
+## Features
+- Automatically acquire user current location
+- Searchable location
 
-This project is a starting point for a Flutter application.
+## How to Run
+1. Create an account at [WeatherMap](http://www.weatherapi.com).
+2. Then get your API key from https://www.weatherapi.com/my/
+3. Clone the repo
+   ```sh
+   git clone https://gitlab.com/iamnabink/moru-weather.git
+   ```
+4. Install all the packages by typing
+   ```sh
+   flutter pub get
+   ```
+5. Navigate to **assets/env** and paste your API key to the OPEN_API_KEY variable
+   ```dart
+   OPEN_API_KEY = Paste Your API Key Here
+   ```
+6. Run the App
 
-A few resources to get you started if this is your first Flutter project:
+## Contact
+- [Nabraj Khadka](https://www.linkedin.com/in/iamnabink/) | [Github](https://github.com/iamnabink)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Author:
+    Nabraj Khadka
+    Supreme IT Solutions Kathmandu, Nepal
