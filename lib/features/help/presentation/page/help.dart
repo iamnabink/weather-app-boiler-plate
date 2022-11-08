@@ -18,7 +18,10 @@ import '../widgets/bottom_nav.dart';
 /// If user does not click any button it should redirect automatically to homepage after 5 seconds.
 
 class HelpPage extends ConsumerStatefulWidget {
+  final bool isInitial;
+
   const HelpPage({
+    this.isInitial = true,
     Key? key,
   }) : super(key: key);
 
@@ -27,12 +30,16 @@ class HelpPage extends ConsumerStatefulWidget {
 }
 
 class _SplashPageState extends ConsumerState<HelpPage> {
-  late Timer timer;
+  Timer? timer;
+
   @override
   void initState() {
-    timer =  Timer(const Duration(seconds: 5), () async {
-      ref.read(startupProvider).goToHomePage();
-    });
+    if (widget.isInitial) {
+      timer = Timer(const Duration(seconds: 5), () async {
+        ref.read(startupProvider).goToHomePage();
+      });
+    }
+
     super.initState();
   }
 
@@ -50,10 +57,13 @@ class _SplashPageState extends ConsumerState<HelpPage> {
                 height: double.infinity,
                 width: double.infinity,
               ),
-              Container(
-                margin: const EdgeInsets.only(right: 15,top: 10),
-                  alignment: Alignment.topRight,
-                  child: const CustomTimer(text: 'Auto-redirecting you in..',)),
+              if (widget.isInitial)
+                Container(
+                    margin: const EdgeInsets.only(right: 15, top: 10),
+                    alignment: Alignment.topRight,
+                    child: const CustomTimer(
+                      text: 'Auto-redirecting in..',
+                    )),
               Align(
                   alignment: Alignment.center,
                   child: Row(
@@ -68,20 +78,31 @@ class _SplashPageState extends ConsumerState<HelpPage> {
                     ],
                   )),
               //Task: 3
-              Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 15, top: 15),
-                    child: PrimaryOutlinedButton(
-                      height: 40,
-                      width: 50,
-                      title: 'SKIP',
-                      onPressed: () {
-                        timer.cancel();
-                        ref.read(startupProvider).skipHelpPage();
-                      },
-                    ),
-                  )),
+              if (widget.isInitial)
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15, top: 15),
+                      child: PrimaryOutlinedButton(
+                        height: 40,
+                        width: 50,
+                        title: 'SKIP',
+                        onPressed: () {
+                          timer?.cancel();
+                          ref.read(startupProvider).skipHelpPage();
+                        },
+                      ),
+                    )),
+              if (widget.isInitial==false)  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 20),
+                      child: InkWell(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(Icons.clear)),
+                    )),
             ],
           ),
         ),
@@ -89,5 +110,3 @@ class _SplashPageState extends ConsumerState<HelpPage> {
     );
   }
 }
-
-

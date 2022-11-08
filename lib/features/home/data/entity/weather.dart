@@ -23,9 +23,10 @@ part 'weather.g.dart';
  class Current with _$Current {
   const factory Current({
     @JsonKey(name: 'last_updated') String? lastUpdated,
-    @JsonKey(name: 'temp_c') int? tempC,
+    @JsonKey(name: 'temp_c') dynamic tempC,
+    @JsonKey(name: 'feelslike_c') dynamic feelsLikeTempC,
     @JsonKey(name: 'temp_f') double? tempF,
-    @JsonKey(name: 'is_day') int? isDay,
+    @JsonKey(name: 'is_day') dynamic isDay,
     @JsonKey(name: 'condition') Condition? condition,
   }) = _Current;
 

@@ -40,7 +40,7 @@ class CustomCupertinoIndicator extends StatelessWidget {
     return CupertinoTheme(
       data: CupertinoTheme.of(context)
           .copyWith(brightness: brightness ?? Brightness.dark),
-      child: const CupertinoActivityIndicator(),
+      child: const CupertinoActivityIndicator(color: Colors.black,),
     );
   }
 }

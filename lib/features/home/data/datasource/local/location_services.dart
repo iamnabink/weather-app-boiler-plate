@@ -1,13 +1,12 @@
 import 'package:geolocator/geolocator.dart';
-import '../../../domain/location_repository.dart';
 
-class LocationRepositoryImpl extends LocationRepository {
-  @override
+class LocationServices {
   Future<Position?> getUserCurrentLocation() async {
     final hasPermission = await _handlePermission();
     if (!hasPermission) {
       return null;
     }
+    print('adadadad ${await Geolocator.getCurrentPosition()}');
     return await Geolocator.getCurrentPosition();
   }
 
@@ -28,7 +27,6 @@ class LocationRepositoryImpl extends LocationRepository {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        _openLocationSettings();
         // Permissions are denied, next time you could try
         // requesting permissions again (this is also where
         // Android's shouldShowRequestPermissionRationale
@@ -40,16 +38,16 @@ class LocationRepositoryImpl extends LocationRepository {
     }
 
     if (permission == LocationPermission.deniedForever) {
+      // _openLocationSettings();
       // Permissions are denied forever, handle appropriately.
       // Permission Denied Forever Message
 
       return false;
     } else {
-      return false;
+      return true;
     }
   }
 
-  @override
   Future<Position?> getLastKnownPosition() async {
     return await Geolocator.getLastKnownPosition();
   }

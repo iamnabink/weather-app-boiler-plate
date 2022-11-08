@@ -1,30 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:moru_weather/core/presentation/resources/colors.dart';
+import 'package:moru_weather/core/presentation/resources/size_constants.dart';
+import 'package:moru_weather/core/presentation/widget/cached_network_image_builder.dart';
+import 'package:moru_weather/core/presentation/widget/network_error_view.dart';
+import 'package:moru_weather/features/home/data/entity/weather.dart';
+import 'package:moru_weather/features/home/di/di.dart';
+import 'package:moru_weather/features/home/presentation/widgets/shimmer_view.dart';
 
-// use use-effect to fetch api ?
-// fetch api when value to text is saved/updated
+import '../../../../core/data/remote/network_exceptions.dart';
+import '../../../../core/presentation/widget/buttons.dart';
+import '../../../../core/presentation/widget/textfields.dart';
+import '../widgets/app_bar.dart';
 
 //TODO:  - Add swipe on refresh
-//TODO:  - Request for user permission
 
-class HomePage extends StatefulWidget {
+class HomePage extends HookConsumerWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(weatherInfoNotifier);
+    // useEffect(() {
+    //   ref.read(weatherInfoNotifier.notifier).getWeatherInfoByLocation(city: 'Kathmandu');
+    //   return () {};
+    // },[]);
 
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
-      body: Center(
+      appBar: AppBarHome(),
+      body: Padding(
+        padding: const EdgeInsets.only(right: 10, left: 10, top: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Starts from here',
-            ),
+          children: [
+            _SearchBarView(),
+            state.when(
+                data: (data) {
+                  return _WeatherInfoView(data);
+                },
+                error: (error) {
+                  return NetworkErrorView(
+                      message: NetworkExceptions.getErrorMessage(
+                          error as NetworkExceptions));
+                },
+                loading: () => const WeatherInfoShimmerView(),
+                idle: () {
+                  return const SizedBox.shrink();
+                }),
           ],
         ),
       ),
@@ -32,16 +52,116 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// Homepage Screen:
-/*
-=> Should contain text-box to enter location name (initially blank) and Save/Update button. If location name is blank, app should call weather api automatically with current latitude
-and longitude of app.
-Else app should call weather api with location name is entered and Save button is pressed.
-=> If location name is entered it must be remembered on next launch
-=> When location name text-box is empty, label of button must be Save; if value exist label should be changed to Update.
-=> Show temperature view (use widget you see appropriate) in appropriate way to show temperature received from API.
-=> When Save/Update button is clicked, if location name is empty or cannot get temperature from API display error message else update temperature view.
-=> In top bar there should be button to open Help Screen (Note: Help Screen has similar behavior as mentioned above)
-Temperature view must contain:
-=> temperature in Celsius ( Eg: "temp_c": 8.0 in below sample response)
-=> temperature in text (Eg: "text": "Clear" in below sample response)*/
+class _WeatherInfoView extends StatelessWidget {
+  final Weather info;
+
+  const _WeatherInfoView(
+    this.info, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 50),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.location_on_outlined,
+                size: 24,
+              ),
+              SBC.mW,
+              Text(
+                '${info.location?.name}',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ],
+          ),
+          SBC.xLH,
+          Text(
+            '${info.location?.localtime}',
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          SBC.xxLH,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                  width: 36,
+                  child: CustomCachedNetworkImage(
+                      'http://${info.current?.condition?.icon?.substring(2)}')),
+              SBC.mW,
+              Text(
+                '${info.current?.tempC}°C',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(fontSize: 36),
+              ),
+            ],
+          ),
+          SBC.xLH,
+          Text(
+            'Feels like ${info.current?.feelsLikeTempC}° C',
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(fontSize: 16, color: AppColors.colorBlack(1)),
+          ),
+          SBC.xLH,
+          Text(
+            '${info.current?.condition?.text}',
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(fontSize: 16, color: AppColors.colorBlack(1)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SearchBarView extends HookConsumerWidget {
+  _SearchBarView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _textController = useTextEditingController();
+    final queryString = useState('');
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+            child: Container(
+          width: 250,
+          child: PrimaryTextField(
+            controller: _textController,
+            onSaved: (_) {},
+            onChanged: (String? val) {
+              if (val != null) {
+                queryString.value = val;
+              }
+            },
+            hintTxt: 'Enter City Name',
+          ),
+        )),
+        // SBC.mW,
+        PrimaryButton(
+          onPressed: () {
+            // queryString = queryString.value; // save/update this value locally
+            ref.read(weatherInfoNotifier.notifier).getWeatherInfoByLocation(city: _textController.text);
+          },
+          title: '${queryString.value.isEmpty ? 'Save' : 'Update'}',
+          height: 48,
+          width: 80,
+        ),
+      ],
+    );
+  }
+}

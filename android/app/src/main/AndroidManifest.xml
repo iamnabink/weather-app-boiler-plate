@@ -8,8 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
    <application
-        android:label="moru_weather"
+        android:label="Moru Weather"
         android:name="${applicationName}"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
