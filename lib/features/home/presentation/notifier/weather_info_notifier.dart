@@ -14,8 +14,8 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
 
   void _onInit() async{
     var location = await repo.fetchSavedLocation();
-    print('DATATAA ${location}');
-    if ( location.isEmpty) {
+    print('DATATAA ${location}'); // Fix saved value issue in case of error
+    if (location.isEmpty) {
       getWeatherInfoByLocation();
     } else if (location.isNotEmpty) {
       getWeatherInfoByLocation(city: location);

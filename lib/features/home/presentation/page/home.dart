@@ -130,7 +130,6 @@ class _SearchBarView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final _textController = useTextEditingController();
     final queryString = useState('');
     ref
@@ -138,7 +137,9 @@ class _SearchBarView extends HookConsumerWidget {
         next.mapOrNull(
           // error: (error) {},
           data: (data) {
-            ref.read(savedLocationNotifier.notifier).saveLocation(_textController.text);
+            ref
+                .read(savedLocationNotifier.notifier)
+                .saveLocation(_textController.text);
           },
         );
       });
