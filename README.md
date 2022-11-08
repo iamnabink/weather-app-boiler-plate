@@ -2,6 +2,8 @@
 
 A simple weather app built with the help of www.weatherapi.com - as an assignment given by moru team.
 
+### Flutter 3.0.4 Null Safety ⭐
+
 ## Features
 - Automatically acquire user current location
 - Search weather info by location
