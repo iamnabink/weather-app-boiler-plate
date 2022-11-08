@@ -65,8 +65,6 @@ dependencies:
   # Code generation for immutable classes that has a simple syntax/API without compromising on the features.
   freezed: ^2.2.1
 
-  # a widget provided to the flutter scroll component drop-down refresh and pull up load.
-  pull_to_refresh: ^2.0.0
 
   # a package containing annotations for freezed.
   freezed_annotation: any
