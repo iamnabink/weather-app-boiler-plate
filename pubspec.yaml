@@ -81,6 +81,9 @@ dependencies:
   # load and cache network images. Can also be used with placeholder and error widgets.
   cached_network_image: ^3.2.1
 
+  # Vector design and runtime animation for Flutter.
+  flare_flutter: ^3.0.2
+
 
 
 #to change app launcher icon add following section
@@ -120,6 +123,7 @@ flutter:
     - assets/images/
     - assets/.env
     - pubspec.yaml
+    - assets/flares/
 
 
   # The following section is to add custom fonts to our app

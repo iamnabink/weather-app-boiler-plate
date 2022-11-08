@@ -1,12 +1,15 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
+import '../resources/ui_assets.dart';
 
 class NetworkErrorView extends StatelessWidget {
   final String? message;
   final bool handleError;
   final Function? onErrorFunction;
 
-  NetworkErrorView({this.message, this.handleError = false, this.onErrorFunction});
+  NetworkErrorView(
+      {this.message, this.handleError = false, this.onErrorFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,15 @@ class NetworkErrorView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // SizedBox(height: 10,),
+        SizedBox(
+          height: 200,
+          width: 200,
+          child: FlareActor(
+            UIAssets.getFlares('empty_view.flr'),
+            // animation:'Alarm',
+            animation: 'idle',
+          ),
+        ),
         Center(
             child: Text(
           message ?? 'Oooops ! ..',
