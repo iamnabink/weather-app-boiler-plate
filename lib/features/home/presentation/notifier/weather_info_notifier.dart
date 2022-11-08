@@ -1,8 +1,9 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:moru_weather/core/data/entities/result_state.dart';
+import 'package:moru_weather/core/data/remote/api_result.dart';
+import 'package:moru_weather/features/home/data/entity/weather.dart';
 import 'package:moru_weather/features/home/domain/weather_info_repository.dart';
 
-import '../../di/di.dart';
 
 class WeatherInfoNotifier extends StateNotifier<ResultState> {
   WeatherInfoNotifier({required this.repo})
@@ -14,7 +15,6 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
 
   void _onInit() async{
     var location = await repo.fetchSavedLocation();
-    print('DATATAA ${location}'); // Fix saved value issue in case of error
     if (location.isEmpty) {
       getWeatherInfoByLocation();
     } else if (location.isNotEmpty) {
@@ -24,7 +24,7 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
 
   void getWeatherInfoByLocation({String? city}) async {
     state = const ResultState.loading();
-    var result;
+    ApiResult<Weather> result;
     if (city == null || city.isEmpty) {
       result = await repo.getWeatherInfoByCurrentLocation();
     } else {

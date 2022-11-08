@@ -17,7 +17,6 @@ void main() async {
     final apiKey = "1b31a4a3ac5d4872855160704220611";
 
     const latLon = "48.8567,2.350";
-    const city = "Kathmandu";
 
     setUp(() {
       dio = Dio(BaseOptions(baseUrl: baseUrl));

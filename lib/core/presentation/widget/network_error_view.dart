@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moru_weather/core/presentation/resources/colors.dart';
 
 import '../resources/ui_assets.dart';
 

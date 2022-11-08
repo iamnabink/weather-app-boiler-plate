@@ -70,7 +70,7 @@ class PrimaryTextField extends HookWidget {
                   ),
                 ),
               Text(
-                '${label}',
+                '$label',
               ),
             ],
           ),
@@ -97,7 +97,7 @@ class PrimaryTextField extends HookWidget {
               counterText: "",
               errorMaxLines: 2,
               contentPadding:
-                  contentPadding ?? EdgeInsets.symmetric(horizontal: 10.0),
+                  contentPadding ?? const EdgeInsets.symmetric(horizontal: 10.0),
               // labelText:
               hintText: hintTxt ?? "",
               // hintStyle:Theme.of(context).textTheme.bodyText1 ,
