@@ -42,7 +42,7 @@ assets
     |-.env                          <--- application's necessary variables
     |-.env.example                  <--- example application's necessary variables
 lib/
-    core/                          <--- application layer
+    core/                          <--- app global/core files
         |-data
             |-entities/                     <-- contains generic entities used in project
             |-local/                        <-- Contains file with global local storage function/variable constants
@@ -51,27 +51,27 @@ lib/
         |-presentation/                   <-- contains core classes dependency injection
             |-resources/                   <-- contains app theme/constant resources
             |-widgets/                    <-- contains global [shared] widgets
-    features/                           <--- data layer
-        |-help/                          <-- repositories (retrieve data, heavy processing etc..)
-          |-data/                       <--- data layer
-            |-repository/                   <-- repositories (retrieve data, heavy processing etc..)
+    features/                           <---features layer
+        |-help/                          <-- Help screen layer
+          |-data/                           <--- data layer
+            |-repository/                       <-- repositories (retrieve data, heavy processing etc..)
           |-di/                             <-- contains core classes dependency injection
-          |-domain/                             <-- domain layer
-            |-repository/                   <-- domain repository
+          |-domain/                         <-- domain layer / help page business requirements
+            |-repository/                       <-- domain repository
           |-presentation                     <-- presentation layer
-            |-page                     <-- contains application's UI/Screen
+            |-page                              <-- contains application's UI/Screen
             |-provider                     <-- contains providers
             |-widgets                     <-- contains widgets
-        |-home/                   <-- repositories (retrieve data, heavy processing etc..)
-          |-data/                   <-- contains app theme/constant resources
+        |-home/                   <--  Home screen layer
+          |-data/                   <-- data layer
             |-datasource/                   <-- data sources for data layer
                 |-local/                   <-- local data source [SecureStorage]
                 |-remote/                   <-- remote data source [API]
             |-entity/                   <-- contains data entities
-            |-repository/                   <-- repository implementation
+            |-repository/                   <-- repositories (retrieve data, heavy processing etc..)
           |-di/                             <-- contains core classes dependency injection
-          |-domain/                             <-- contains dependency injection files
-            repository/                   <-- contains app theme/constant resources
+          |-domain/                             <-- domain layer / help page business requirements
+            repository/                   <-- domain repository
           |-presentation                     <-- presentation layer
             |-page                     <-- contains application's UI/Screen
             |-notifiers                     <-- contains  notifiers
@@ -79,8 +79,8 @@ lib/
 
     routes/                       <--- contains custom route related files
     main.dart                     <--- entry point - production
-    main.dev.dart                     <--- entry point - development
-test/                               <--- contains test files [Mock Test, Unit tests]
+    main.dev.dart                 <--- entry point - development
+test/                             <--- contains test files [Mock Test, Unit tests]
 
 
 ```
