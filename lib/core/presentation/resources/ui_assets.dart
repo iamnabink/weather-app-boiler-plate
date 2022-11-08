@@ -8,8 +8,5 @@ class UIAssets {
     return 'assets/svg/$svgName';
   }
 
-  static String getFlares(String svgName) {
-    return 'assets/flares/$svgName';
-  }
 
 }

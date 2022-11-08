@@ -20,6 +20,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files.
+  flutter_svg: ^1.1.6
+
   hooks_riverpod: ^2.1.1  #A simple way to access state from anywhere in your application while robust and testable.
 
   #  Flutter plugin for querying information about the application package, such as CFBundleVersion on iOS or versionCode on Android.
@@ -81,8 +84,6 @@ dependencies:
   # load and cache network images. Can also be used with placeholder and error widgets.
   cached_network_image: ^3.2.1
 
-  # Vector design and runtime animation for Flutter.
-  flare_flutter: ^3.0.2
 
 
 
@@ -123,7 +124,7 @@ flutter:
     - assets/images/
     - assets/.env
     - pubspec.yaml
-    - assets/flares/
+
 
 
   # The following section is to add custom fonts to our app

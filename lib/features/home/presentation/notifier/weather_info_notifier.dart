@@ -12,7 +12,7 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
   void getWeatherInfoByLocation({String? city}) async {
     state = const ResultState.loading();
     var result;
-    if (city == null) {
+    if (city == null || city.isEmpty) {
       result = await repo.getWeatherInfoByCurrentLocation();
     } else {
       result = await repo.getWeatherInfoByLocation(city);
