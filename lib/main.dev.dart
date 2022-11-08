@@ -15,20 +15,10 @@ import 'main_common.dart';
 
 Future<void> main() async {
   await mainCommon();
-  await runZonedGuarded(() async {
-    await SentryFlutter.init(
-          (options) {
-        options.dsn =
-        dotenv.env['SENTRY_DSN'];
-      },
-    );
-    runApp(
-        DevicePreview(
-          enabled: true,
-          builder: (context) => ProviderScope(observers: [Logger()],child:  Application()),
-        ));
-  }, (exception, stackTrace) async {
-    await Sentry.captureException(exception, stackTrace: stackTrace);
-  });
+  runApp(
+      DevicePreview(
+        enabled: true,
+        builder: (context) => ProviderScope(observers: [Logger()],child:  Application()),
+      ));
   // runApp(MyApp());
 }
