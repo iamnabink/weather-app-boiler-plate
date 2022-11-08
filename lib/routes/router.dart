@@ -8,7 +8,9 @@ import '../features/home/presentation/page/home.dart';
 /*
 flutter packages pub run build_runner build --delete-conflicting-outputs
 */
+/// navigating between screens, choose the approach that makes most sense in terms of usability.
 
+/// register screen here
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[

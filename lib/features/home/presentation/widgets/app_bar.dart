@@ -18,6 +18,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
             onPressed: () {
               // since route-guard has been used in auto-route navigation, here we used material navigation
+              // If it works, it works
               Navigator.push(
                 context,
                 MaterialPageRoute(

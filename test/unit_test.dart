@@ -2,7 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
+/// Task - Adding tests are highly recommended
+
 void main() async {
+
+  // validate image url
   test('Should print valid image url', () {
     var url = '//cdn.weatherapi.com/weather/64x64/day/143.png';
     var mod = 'http://${url.substring(2)}';
@@ -12,6 +16,7 @@ void main() async {
   late Dio dio;
   late DioAdapter dioAdapter;
 
+  /// grouping api mock test cases
   group('WeatherAPITest', () {
     final baseUrl = 'http:"//api.weatherapi.com/v1';
     final apiKey = "1b31a4a3ac5d4872855160704220611";
@@ -22,7 +27,6 @@ void main() async {
       dio = Dio(BaseOptions(baseUrl: baseUrl));
       dioAdapter = DioAdapter(
         dio: dio,
-
         // [FullHttpRequestMatcher] is a default matcher class
         // (which actually means you haven't to pass it manually) that matches entire URL.
         //
@@ -32,6 +36,7 @@ void main() async {
         matcher: const FullHttpRequestMatcher(),
       );
     });
+
 
     test('throw api key error', () async {
       final route = '/current.json?key=$apiKey&q=$baseUrl';

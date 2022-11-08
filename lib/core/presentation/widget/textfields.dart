@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+/// Primary text field used through-out the app
 class PrimaryTextField extends HookWidget {
   final String? hintTxt;
   final String? initialValue;
@@ -96,8 +97,8 @@ class PrimaryTextField extends HookWidget {
               errorText: errorText,
               counterText: "",
               errorMaxLines: 2,
-              contentPadding:
-                  contentPadding ?? const EdgeInsets.symmetric(horizontal: 10.0),
+              contentPadding: contentPadding ??
+                  const EdgeInsets.symmetric(horizontal: 10.0),
               // labelText:
               hintText: hintTxt ?? "",
               // hintStyle:Theme.of(context).textTheme.bodyText1 ,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/presentation/widget/app_version_builder.dart';
 import '../../../../core/presentation/widget/buttons.dart';
 
+/// Bottom Nav bar - Help Page
 class BottomNavHelpPage extends StatelessWidget {
   final VoidCallback callback;
   final bool isInitial;
@@ -15,6 +16,8 @@ class BottomNavHelpPage extends StatelessWidget {
           children: [
             const Center(child: AppVersionBuilder()),
             if (isInitial)
+
+              /// Must include button named ‘Skip’
               Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
@@ -24,9 +27,7 @@ class BottomNavHelpPage extends StatelessWidget {
                       width: 50,
                       radius: 25,
                       title: 'SKIP',
-                      onPressed: () {
-
-                      },
+                      onPressed: callback,
                     ),
                   )),
           ],

@@ -18,13 +18,14 @@ import '../widgets/app_bar.dart';
 class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(weatherInfoNotifier);
+    final state = ref.watch(weatherInfoNotifier); // listen for state change
     // useEffect(() {
     //   ref.read(weatherInfoNotifier.notifier).getWeatherInfoByLocation(city: 'Kathmandu');
     //   return () {};
     // },[]);
 
     return Scaffold(
+      /// Task - In top bar there should be button to open Help Screen (Note: Help Screen has similar behavior as mentioned above)
       appBar: AppBarHome(),
       body: Padding(
         padding: const EdgeInsets.only(right: 10, left: 10, top: 20),
@@ -33,10 +34,11 @@ class HomePage extends HookConsumerWidget {
             _SearchBarView(),
             state.when(
                 data: (data) {
+                  /// Task - Show temperature view (use widget you see appropriate) in appropriate way to show temperature received from API.
                   return _WeatherInfoView(data);
-                  // return const WeatherInfoShimmerView();
                 },
                 error: (error) {
+                  /// Task - When Save/Update button is clicked, if location name is empty or cannot get temperature from API display error message else update temperature view.
                   return NetworkErrorView(
                       message: NetworkExceptions.getErrorMessage(
                           error as NetworkExceptions));
@@ -59,6 +61,12 @@ class _WeatherInfoView extends StatelessWidget {
     this.info, {
     Key? key,
   }) : super(key: key);
+
+  ///
+  /// Temperature view must contain:
+  /// temperature in Celsius ( Eg: "temp_c": 8.0 in below sample response)
+  /// temperature in text (Eg: "text": "Clear" in below sample response)
+  ///
 
   @override
   Widget build(BuildContext context) {
@@ -133,11 +141,15 @@ class _SearchBarView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final _textController = useTextEditingController();
     final queryString = useState('');
+
+    // listen for state change
     ref
       ..listen<ResultState>(weatherInfoNotifier, (previous, next) {
         next.mapOrNull(
           // error: (error) {},
           data: (data) {
+            /// If location name is entered it must be remembered on next launch
+            /// Note - Saving location only if location is valid [returns with data]
             ref
                 .read(savedLocationNotifier.notifier)
                 .saveLocation(_textController.text);
@@ -148,6 +160,7 @@ class _SearchBarView extends HookConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
+        /// TASK - Should contain textbox to enter location name (initially blank) and Save/Update button.
         Expanded(
             child: Container(
           width: 250,
@@ -165,13 +178,14 @@ class _SearchBarView extends HookConsumerWidget {
         // SBC.mW,
         PrimaryButton(
           onPressed: () {
-            // queryString = queryString.value; // save/update this value locally
             FocusScope.of(context).unfocus();
             ref
                 .read(weatherInfoNotifier.notifier)
                 .getWeatherInfoByLocation(city: _textController.text);
           },
           title: '${queryString.value.isEmpty ? 'Save' : 'Update'}',
+
+          /// Task - When location name textbox is empty, label of button must be Save; if value exist label should be changed to Update.
           height: 48,
           width: 80,
         ),

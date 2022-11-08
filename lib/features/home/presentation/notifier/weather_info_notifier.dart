@@ -13,6 +13,7 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
 
   final WeatherInfoRepository repo;
 
+
   void _onInit() async{
     var location = await repo.fetchSavedLocation();
     if (location.isEmpty) {
@@ -26,8 +27,10 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
     state = const ResultState.loading();
     ApiResult<Weather> result;
     if (city == null || city.isEmpty) {
+      /// Task - If location name is blank, app should call weather api automatically with current latitude and longitude of app.
       result = await repo.getWeatherInfoByCurrentLocation();
     } else {
+      /// Task - Else app should call weather api with location name is entered and Save button is pressed.
       result = await repo.getWeatherInfoByLocation(city);
     }
     result.when(success: (data) {

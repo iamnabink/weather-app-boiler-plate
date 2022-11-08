@@ -1,35 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryTextButton extends StatelessWidget {
-  const PrimaryTextButton({
-    Key? key,
-    required this.title,
-    required this.onPressed,
-    this.color,
-    this.size,
-  }) : super(key: key);
-  final String title;
-  final Color? color;
-  final double? size;
-  final void Function() onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onPressed,
-      child: Text(
-        title,
-        style: TextStyle(
-          color: color ?? Theme.of(context).primaryColor,
-          fontSize: size ?? 14,
-        ),
-      ),
-    );
-  }
-}
-
 class CustomCupertinoIndicator extends StatelessWidget {
   final Brightness? brightness;
 
