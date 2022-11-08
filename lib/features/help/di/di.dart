@@ -5,6 +5,7 @@ import '../../../routes/di.dart';
 import '../data/repository/setting_repo_impl.dart';
 import '../presentation/provider/start_up_provider.dart';
 
+// * DI for Settings repository - help
 final settingsRepository =
     Provider<SettingsRepository>((ref) => SettingsRepositoryImpl(
           secureStorage: ref.watch(sharedPrefsProvider),
@@ -14,3 +15,5 @@ var startupProvider = Provider<StartUpProvider>((ref) {
   return StartUpProvider(
       repo: ref.watch(settingsRepository), router: ref.watch(routerProvider));
 });
+
+// * DI for Settings repository - help

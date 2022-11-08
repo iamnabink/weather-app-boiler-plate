@@ -14,8 +14,6 @@ import '../../../../core/presentation/widget/buttons.dart';
 import '../../../../core/presentation/widget/textfields.dart';
 import '../widgets/app_bar.dart';
 
-//TODO:  - Add swipe on refresh
-
 class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {

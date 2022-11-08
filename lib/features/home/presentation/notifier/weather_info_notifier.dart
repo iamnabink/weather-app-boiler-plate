@@ -11,13 +11,13 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
 
   void getWeatherInfoByLocation({String? city}) async {
     state = const ResultState.loading();
-    var response;
+    var result;
     if (city == null) {
-      response = await repo.getWeatherInfoByCurrentLocation();
+      result = await repo.getWeatherInfoByCurrentLocation();
     } else {
-      response = await repo.getWeatherInfoByLocation(city);
+      result = await repo.getWeatherInfoByLocation(city);
     }
-    response.when(success: (data) {
+    result.when(success: (data) {
       state = ResultState.data(data: data);
     }, failure: (error) {
       state = ResultState.error(error: error);
