@@ -4,23 +4,14 @@ import 'package:moru_weather/core/presentation/widget/buttons.dart';
 import 'package:moru_weather/core/presentation/widget/shimmer_effect.dart';
 
 class CustomCachedNetworkImage extends StatelessWidget {
-  final String? url;
-  final BoxFit? fit;
+  final String url;
 
-  const CustomCachedNetworkImage(this.url, {this.fit});
+  const CustomCachedNetworkImage(this.url,);
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: url ?? '',
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: fit ?? BoxFit.cover,
-          ),
-        ),
-      ),
+      imageUrl: url,
       placeholder: (context, url) => const CustomCupertinoIndicator(),
       errorWidget: (context, url, error) => const CustomCupertinoIndicator(),
     );

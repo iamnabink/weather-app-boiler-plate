@@ -2,9 +2,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:moru_weather/core/data/entities/result_state.dart';
 import 'package:moru_weather/features/home/domain/weather_info_repository.dart';
 
-
 class WeatherInfoNotifier extends StateNotifier<ResultState> {
-  WeatherInfoNotifier({required this.repo}) : super(const ResultState.idle()){
+  WeatherInfoNotifier({required this.repo}) : super(const ResultState.idle()) {
     getWeatherInfoByLocation();
   }
 
@@ -24,5 +23,4 @@ class WeatherInfoNotifier extends StateNotifier<ResultState> {
       state = ResultState.error(error: error);
     });
   }
-
 }

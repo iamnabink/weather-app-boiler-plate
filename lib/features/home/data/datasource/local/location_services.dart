@@ -6,7 +6,6 @@ class LocationServices {
     if (!hasPermission) {
       return null;
     }
-    print('adadadad ${await Geolocator.getCurrentPosition()}');
     return await Geolocator.getCurrentPosition();
   }
 
@@ -17,8 +16,6 @@ class LocationServices {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
       // Permission Denied Message
       return false;
     }
@@ -28,10 +25,7 @@ class LocationServices {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
+        // requesting permissions again
         // Permission Denied Message
         return false;
       }
@@ -47,18 +41,9 @@ class LocationServices {
       return true;
     }
   }
-
+/// last known position
   Future<Position?> getLastKnownPosition() async {
     return await Geolocator.getLastKnownPosition();
   }
 
-  void _openLocationSettings() async {
-    final opened = await Geolocator.openLocationSettings();
-    String displayValue;
-    if (opened) {
-      displayValue = 'Opened Location Settings';
-    } else {
-      displayValue = 'Error opening Location Settings';
-    }
-  }
 }

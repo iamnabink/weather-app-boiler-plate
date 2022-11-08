@@ -74,7 +74,7 @@ class _WeatherInfoView extends StatelessWidget {
                 Icons.location_on_outlined,
                 size: 24,
               ),
-              SBC.mW,
+              SBC.sW,
               Text(
                 '${info.location?.name}',
                 style: Theme.of(context).textTheme.headline6,
@@ -90,11 +90,11 @@ class _WeatherInfoView extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                  width: 36,
+              Container(
+                  width: 50,
                   child: CustomCachedNetworkImage(
                       'http://${info.current?.condition?.icon?.substring(2)}')),
-              SBC.mW,
+              SBC.sW,
               Text(
                 '${info.current?.tempC}°C',
                 style: Theme.of(context)
@@ -155,6 +155,7 @@ class _SearchBarView extends HookConsumerWidget {
         PrimaryButton(
           onPressed: () {
             // queryString = queryString.value; // save/update this value locally
+            FocusScope.of(context).unfocus();
             ref.read(weatherInfoNotifier.notifier).getWeatherInfoByLocation(city: _textController.text);
           },
           title: '${queryString.value.isEmpty ? 'Save' : 'Update'}',
