@@ -40,7 +40,7 @@ assets
     |-fonts/                         <--- Custom fonts
     |-images/                        <--- file resources
     |-.env                          <--- application's necessary variables
-    |-,env.example                  <--- example application's necessary variables
+    |-.env.example                  <--- example application's necessary variables
 lib/
     core/                          <--- application layer
         |-data
