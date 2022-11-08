@@ -41,9 +41,9 @@ class LocationServices {
       return true;
     }
   }
-/// last known position
+
+  /// last known position
   Future<Position?> getLastKnownPosition() async {
     return await Geolocator.getLastKnownPosition();
   }
-
 }
