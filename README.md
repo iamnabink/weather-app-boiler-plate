@@ -99,7 +99,7 @@ test/                               <--- contains test files [Mock Test, Unit te
 
 
 ### Storage
-- **Flutter SecureStorage **
+- **Flutter SecureStorage**
 
 Again to note, this is not a best and final version, you are always invited to edit and suggest changes, please make pull request to make changes this readme.
 
