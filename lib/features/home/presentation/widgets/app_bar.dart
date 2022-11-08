@@ -26,7 +26,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
                     )),
               );
             },
-            icon: const Icon(Icons.help_outline))
+            icon:  Icon(Icons.help_outline,color: AppColors.primaryColor(1),))
       ],
     );
   }

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:moru_weather/core/presentation/resources/colors.dart';
+import 'package:moru_weather/core/presentation/resources/constants.dart';
 import 'package:moru_weather/core/presentation/resources/ui_assets.dart';
 import 'package:moru_weather/core/presentation/widget/buttons.dart';
 import '../../../../core/presentation/widget/custom_system_overlays.dart';
@@ -47,62 +49,65 @@ class _SplashPageState extends ConsumerState<HelpPage> {
   Widget build(BuildContext context) {
     return DarkThemeAnnotatedRegion(
       child: Scaffold(
-        bottomNavigationBar: const BottomNavHelpPage(),
-        body: SafeArea(
-          child: Stack(
+        appBar: AppBar(
+          elevation: 0.5,
+          backgroundColor: AppColors.colorWhite(1),
+          title: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              //Task: 1
-              Image.asset(
-                UIAssets.getImage('frame.jpeg'),
-                height: double.infinity,
-                width: double.infinity,
+              //Task: 2
+              Text(
+                '$kHelpPageWelcomeMsg',
+                style: Theme.of(context).textTheme.headline6,
               ),
+              const Icon(Icons.cloud_circle)
+            ],
+          ),
+          centerTitle: true,
+          leading: (widget.isInitial == false)
+              ? Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15, top: 20),
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.clear,
+                          color: AppColors.primaryColor(1),
+                        )),
+                  ))
+              : null,
+        ),
+        bottomNavigationBar: BottomNavHelpPage(() {
+          timer?.cancel();
+          ref.read(startupProvider).skipHelpPage();
+
+        }, widget.isInitial),
+        body: SafeArea(
+          child: Column(
+            children: [
+
               if (widget.isInitial)
                 Container(
-                    margin: const EdgeInsets.only(right: 15, top: 10),
+                    padding: const EdgeInsets.only(right: 15, top: 10),
                     alignment: Alignment.topRight,
                     child: const CustomTimer(
-                      text: 'Auto-redirecting in..',
+                      text: '$kHelpPageAutoRedirectMsg',
                     )),
-              Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      //Task: 2
-                      Text(
-                        'We show weather for you',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      const Icon(Icons.cloud_circle)
-                    ],
-                  )),
-              //Task: 3
-              if (widget.isInitial)
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 15, top: 15),
-                      child: PrimaryOutlinedButton(
-                        height: 40,
-                        width: 50,
-                        title: 'SKIP',
-                        onPressed: () {
-                          timer?.cancel();
-                          ref.read(startupProvider).skipHelpPage();
-                        },
-                      ),
-                    )),
-              if (widget.isInitial==false)  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 20),
-                      child: InkWell(
-                          onTap: (){
-                            Navigator.pop(context);
-                          },
-                          child: const Icon(Icons.clear)),
-                    )),
+              //Task: 1
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Image.asset(
+                    UIAssets.getImage('frame.jpeg'),
+                    height: double.infinity,
+                    width: double.infinity,
+                  ),
+                ),
+              ),
+
             ],
           ),
         ),

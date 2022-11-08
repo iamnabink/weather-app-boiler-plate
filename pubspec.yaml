@@ -47,7 +47,7 @@ dependencies:
   flutter_secure_storage: ^6.0.0
 
   #  Sentry SDK for Flutter. This package aims to support different Flutter targets by relying on the many platforms supported by Sentry with native SDKs.
-  sentry_flutter: ^6.2.2
+  sentry_flutter: ^6.14.0
 
   # Pretty Dio logger is a Dio interceptor that logs remote calls in a pretty, easy to read format.
   pretty_dio_logger: ^1.1.1

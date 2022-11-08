@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moru_weather/core/presentation/resources/size_constants.dart';
-import 'package:moru_weather/core/presentation/widget/cached_network_image_builder.dart';
-
 import '../../../../core/presentation/widget/shimmer_effect.dart';
 
 class WeatherInfoShimmerView extends StatelessWidget {
@@ -19,41 +17,44 @@ class WeatherInfoShimmerView extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
-                Icons.location_on_outlined,
-                size: 24,
+              const ShimmerWidget(
+                height: 24,
+                width: 24,
               ),
               SBC.mW,
-              ShimmerWidget(
+              const ShimmerWidget(
                 height: 20,
                 width: 100,
               ),
             ],
           ),
-          SBC.xLH,
-          ShimmerWidget(
+          SBC.xxLH,
+          const ShimmerWidget(
             height: 20,
-            width: 100,
+            width: 150,
           ),
           SBC.xxLH,
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(width: 36, child: CustomCachedNetworkImage('')),
+              const ShimmerWidget(
+                height: 36,
+                width: 36,
+              ),
               SBC.mW,
-              ShimmerWidget(
-                height: 20,
-                width: 100,
+              const ShimmerWidget(
+                height: 40,
+                width: 120,
               ),
             ],
           ),
           SBC.xLH,
-          ShimmerWidget(
+          const ShimmerWidget(
             height: 20,
-            width: 100,
+            width: 150,
           ),
           SBC.xLH,
-          ShimmerWidget(
+          const ShimmerWidget(
             height: 20,
             width: 100,
           ),

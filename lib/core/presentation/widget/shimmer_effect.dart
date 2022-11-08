@@ -14,7 +14,7 @@ class ShimmerWidget extends StatelessWidget {
       width: width,
       height: height,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(radius ?? 10),
+        borderRadius: BorderRadius.circular(radius ?? 4),
         child: Image.asset(
           UIAssets.getImage('loading.gif'),
           fit: BoxFit.cover,

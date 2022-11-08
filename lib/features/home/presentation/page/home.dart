@@ -34,6 +34,7 @@ class HomePage extends HookConsumerWidget {
             state.when(
                 data: (data) {
                   return _WeatherInfoView(data);
+                  // return const WeatherInfoShimmerView();
                 },
                 error: (error) {
                   return NetworkErrorView(
@@ -80,7 +81,7 @@ class _WeatherInfoView extends StatelessWidget {
               ),
             ],
           ),
-          SBC.xLH,
+          SBC.xxLH,
           Text(
             '${info.location?.localtime}',
             style: Theme.of(context).textTheme.bodyText1,
