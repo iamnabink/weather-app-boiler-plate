@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:moru_weather/core/data/remote/api_result.dart';
+import 'package:moru_weather/features/home/data/datasource/local/local_saved_location.dart';
 import 'package:moru_weather/features/home/data/datasource/local/location_services.dart';
 import 'package:moru_weather/features/home/data/datasource/remote/weather_remote_data_source.dart';
 import 'package:moru_weather/features/home/data/entity/weather.dart';
@@ -9,11 +10,13 @@ import '../../../../core/data/remote/network_info.dart';
 
 class WeatherInfoRepositoryImpl extends WeatherInfoRepository {
   final LocationServices locationServices;
+  final LocalSavedLocation savedLocationLocal;
   final WeatherRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
 
   WeatherInfoRepositoryImpl(
       {required this.locationServices,
+      required this.savedLocationLocal,
       required this.remoteDataSource,
       required this.networkInfo});
 
@@ -28,7 +31,6 @@ class WeatherInfoRepositoryImpl extends WeatherInfoRepository {
 
   @override
   Future<ApiResult<Weather>> getWeatherInfoByCurrentLocation() async {
-
     if (await networkInfo.isConnected) {
       try {
         // first check if current location is fetched or not
@@ -47,7 +49,8 @@ class WeatherInfoRepositoryImpl extends WeatherInfoRepository {
               error: NetworkExceptions.defaultError(
                   e.response?.data['error']['message'])); //code for code
         } else {
-          return ApiResult.failure(error: NetworkExceptions.defaultError(e.toString()));
+          return ApiResult.failure(
+              error: NetworkExceptions.defaultError(e.toString()));
         }
       }
     } else {
@@ -79,5 +82,15 @@ class WeatherInfoRepositoryImpl extends WeatherInfoRepository {
       return const ApiResult.failure(
           error: NetworkExceptions.noInternetConnection());
     }
+  }
+
+  @override
+  Future<String> fetchSavedLocation() async {
+    return await savedLocationLocal.fetchSavedLocation();
+  }
+
+  @override
+  Future<void> saveLocation(String location) async {
+    savedLocationLocal.saveLocation(location);
   }
 }

@@ -9,6 +9,7 @@ import 'package:moru_weather/features/home/data/entity/weather.dart';
 import 'package:moru_weather/features/home/di/di.dart';
 import 'package:moru_weather/features/home/presentation/widgets/shimmer_view.dart';
 
+import '../../../../core/data/entities/result_state.dart';
 import '../../../../core/data/remote/network_exceptions.dart';
 import '../../../../core/presentation/widget/buttons.dart';
 import '../../../../core/presentation/widget/textfields.dart';
@@ -129,8 +130,18 @@ class _SearchBarView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     final _textController = useTextEditingController();
     final queryString = useState('');
+    ref
+      ..listen<ResultState>(weatherInfoNotifier, (previous, next) {
+        next.mapOrNull(
+          // error: (error) {},
+          data: (data) {
+            ref.read(savedLocationNotifier.notifier).saveLocation(_textController.text);
+          },
+        );
+      });
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
@@ -154,7 +165,9 @@ class _SearchBarView extends HookConsumerWidget {
           onPressed: () {
             // queryString = queryString.value; // save/update this value locally
             FocusScope.of(context).unfocus();
-            ref.read(weatherInfoNotifier.notifier).getWeatherInfoByLocation(city: _textController.text);
+            ref
+                .read(weatherInfoNotifier.notifier)
+                .getWeatherInfoByLocation(city: _textController.text);
           },
           title: '${queryString.value.isEmpty ? 'Save' : 'Update'}',
           height: 48,
