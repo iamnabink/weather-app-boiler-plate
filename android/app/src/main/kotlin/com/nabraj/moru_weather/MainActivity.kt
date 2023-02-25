@@ -1,4 +1,4 @@
-package com.nabraj.moru_weather
+package com.nabraj.weather_boilerplate
 
 import io.flutter.embedding.android.FlutterActivity
 

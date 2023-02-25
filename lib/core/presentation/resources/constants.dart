@@ -12,6 +12,6 @@ BoxDecoration kBoxDecoration = BoxDecoration(
   ],
 );
 
-const kAppName = 'Moru Weather App';
+const kAppName = 'Weather Boilerplate App';
 const kHelpPageWelcomeMsg = 'We show weather for you';
 const kHelpPageAutoRedirectMsg = 'Auto-redirecting in..';

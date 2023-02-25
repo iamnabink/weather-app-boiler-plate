@@ -1,6 +1,6 @@
-# Moru Weather App
+# Weather Boilerplate App
 
-A simple weather app built with the help of www.weatherapi.com - as an assignment given by moru team.
+Flutter Boilerplate project with Riverpod and SOLID principles for scalable and maintainable Flutter applications.
 
 ### Flutter 3.0.4 Null Safety ⭐
 
@@ -15,7 +15,7 @@ A simple weather app built with the help of www.weatherapi.com - as an assignmen
 
 3. Clone the repo
    ```sh
-   git clone https://gitlab.com/iamnabink/moru-weather.git
+   git clone https://gitlab.com/iamnabink/weather-app-boiler-plate.git
    ```
 4. Install all the packages by typing
    ```sh
